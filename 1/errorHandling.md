@@ -70,7 +70,7 @@ if 處於 Feature 階段 {
 }
 ```
 
-### Final 
+### Final Code
 ```go
 if 處於 Feature 階段 {
 	CoinSizeIndex, NumLines, err := 獲取緩存請求數據();
