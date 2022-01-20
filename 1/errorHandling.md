@@ -123,6 +123,7 @@ type PathError struct {
 只需返回错误，而不假设内容，但是不知道上下文。
 
 ```go
+// package 級別可見
 type temporay interface {
 	Temporary() bool
 }
@@ -175,3 +176,55 @@ func CountLines(r io.Reader) (int, error) {
 }
 ```
 类似 sql 的 sql.Rows: Rows.Next
+
+```go
+func WriteResponse(...){
+	...
+	k_test.go
+}
+```
+
+
+## Wrap errors
+Go：沒有 Java exception 那種自帶堆棧信息的try catch，找問題麻煩
+```go
+// 處理一個錯誤時，帶了兩個任務 ———— 要麼只處理錯誤，要麼處理錯誤
+func WriterAll(w io.Writer, buf []byte) error {
+	_, err := w.Write(buf)
+	if err != nil {
+		log.Println("unable to write:", err)
+		return err
+	}
+
+	return nil
+}
+```
+
+```go
+// 處理一個錯誤時，帶了兩個任務 ———— 要麼只處理錯誤，要麼處理錯誤
+func WriterAll(w io.Writer, buf []byte) error {
+	_, err := w.Write(buf)
+	return errors.Wrap(err, "unable to write:")
+}
+```
+
+## Wrapping errors with %w
+```go
+if err != nil {
+	return fmt.Errorf("decompress %v: %v", name ,err)
+}
+```
+`fmt.Errorf` 支持 `%w` 後
+```go
+if err != nil {
+	return fmt.Errorf("decompress %v: %w", name ,err)
+}
+```
+用 `%w` 包裝錯誤後，可用於 `errors.Is` 以及 `errors.As`
+```go
+
+var ErrPermission = errors.New("error permission")
+err := fmt.Errorf("access denied: %w", ErrPermission)
+//...
+if errors.Is(err, ErrPermission) { /*...*/ }
+```
