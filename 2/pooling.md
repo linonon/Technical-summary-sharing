@@ -21,39 +21,13 @@
 
 ### 使用範例
 
-```go
-var personPool *sync.Pool
+Define
 
-type Person struct {
-	Name string
-}
+![Define](pic/code2.png)
 
-func initPersonPool() {
-	personPool = &sync.Pool {
-		New: func()interface{} {
-			return new(Person)
-		},
-	}
-}
+Using
 
-func main() {
-	initPersonPool()
-
-	p := personPool.Get().(*Person)
-    // New -> &Person{}
-
-	p.Name = "first"
-    // &Person{name: first}
-
-	pool.Put(p)
-
-	pool.Get().(*Person)
-    // Get -> &Person{name: first}
-
-	pool.Get().(*Person))
-    // &Person{}
-}
-```
+![Define](pic/code.png)
 
 所以我們需要對數據做清除後放入
 
@@ -62,17 +36,21 @@ func main() {
 ### 場景流程介紹
 
 Banchmark
+
 ![Banchmark1](/2/pic/0Banchmark.png)
 
 DoStat
+
 ![DoStat](/2/pic/0DoStat.png)
 
 Spin流程
+
 ![Spin流程](pic/Spin流程.png)
 
 ### 未優化前性能測試
 
 未優化前1000
+
 ![未優化前1000](pic/0未優化前1000.png)
 
 `allocs/op` means how many distinct memory allocations occurred per op (single iteration).
@@ -80,15 +58,19 @@ Spin流程
 `B/op` is how many bytes were allocated per op.
 
 未優化火焰圖
+
 ![未優化火焰圖](pic/0未優化前火焰圖.png)
 
 未優化前NormalSpin()
+
 ![未優化前NormalSpin](pic/0未優化前NormalSpin.png)
 
 未優化前CreateFinalPanel
+
 ![未優化前CreateFinalPanel](pic/0未優化前CreateFinalPanel.png)
 
 未優化前New
+
 ![未優化前New](/2/pic/0未優化前New.png)
 
 ### 開始優化cMap
@@ -115,44 +97,76 @@ func InitPool(){
 ```
 
 CleanMap設計
+
 ![CleanMap](/2/pic/1CleanMap.png)
 
 優化CMap後1000
+
 ![cMap1000](pic/1優化CMap後1000.png)
 
-cMap Perf
-![cMapPerf](/2/pic/1CreateFinalPanelPerf.png)
+優化CMap後火焰圖
+
+![優化CMap後火焰圖](pic/1火焰圖.png)
+
+CreateFinalPanelPerf
+
+![CreateFinalPanelPerf](/2/pic/1CreateFinalPanelPerf.png)
 
 CleanMap Perf
+
 ![CleanMapPerf](/2/pic/1CleanMapPerf.png)
 
 ### 開始優化 Spin.New()
 
 SpinPool設計
+
 ![SpinPool](/2/pic/2InitPool.png)
 
 優化New後1000
+
 ![2優化後1000](/2/pic/2優化New後1000.png)
 
 New
+
 ![New](/2/pic/2New.png)
 
 NewPerf
+
 ![NewPerf](/2/pic/2NewPerf.png)
 
 CleanSpin
+
 ![CleanSpin](/2/pic/2CleanSpin.png)
 
 ### 優化 資料結構
 
 DataType
+
 ![優化後DataType](/2/pic/3DataType.png)
 
 優化結構後1000
+
 ![優化後1000](/2/pic/3優化結構後1000.png)
 
-優化後火焰圖
-![優化後火焰圖](/2/pic/3火焰圖.png)
+### cMap & fMap 整合進 &Spin{}
+
+整合進Spin
+
+![整合進Spin](/2/pic/4整合.png)
+
+重構後
+
+![重構後](/2/pic/4重構後1000.png)
+
+重構後火焰圖
+
+![重構後火焰圖](/2/pic/4火焰圖.png)
+
+### tSlice 臨時變數 整合進 Spin
+
+重構後1000
+
+![重構後1000](/2/pic/5重構後1000.png)
 
 ## Reference
 
