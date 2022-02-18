@@ -37,11 +37,11 @@ Using
 
 Banchmark
 
-![Banchmark1](/2/pic/0Banchmark.png)
+![Banchmark1](/pic/0Banchmark.png)
 
 DoStat
 
-![DoStat](/2/pic/0DoStat.png)
+![DoStat](/pic/0DoStat.png)
 
 Spin流程
 
@@ -71,12 +71,12 @@ Spin流程
 
 未優化前New
 
-![未優化前New](/2/pic/0未優化前New.png)
+![未優化前New](pic/0未優化前New.png)
 
 ### 開始優化cMap
 
 Benchmark
-![Benchmark](/2/pic/1Banchmark.png)
+![Benchmark](/pic/1Banchmark.png)
 
 InitPool設計
 
@@ -98,7 +98,7 @@ func InitPool(){
 
 CleanMap設計
 
-![CleanMap](/2/pic/1CleanMap.png)
+![CleanMap](/pic/1CleanMap.png)
 
 優化CMap後1000
 
@@ -110,63 +110,105 @@ CleanMap設計
 
 CreateFinalPanelPerf
 
-![CreateFinalPanelPerf](/2/pic/1CreateFinalPanelPerf.png)
+![CreateFinalPanelPerf](/pic/1CreateFinalPanelPerf.png)
 
 CleanMap Perf
 
-![CleanMapPerf](/2/pic/1CleanMapPerf.png)
+![CleanMapPerf](/pic/1CleanMapPerf.png)
 
 ### 開始優化 Spin.New()
 
 SpinPool設計
 
-![SpinPool](/2/pic/2InitPool.png)
+![SpinPool](/pic/2InitPool.png)
 
 優化New後1000
 
-![2優化後1000](/2/pic/2優化New後1000.png)
+![2優化後1000](/pic/2優化New後1000.png)
 
 New
 
-![New](/2/pic/2New.png)
+![New](/pic/2New.png)
 
 NewPerf
 
-![NewPerf](/2/pic/2NewPerf.png)
+![NewPerf](/pic/2NewPerf.png)
 
 CleanSpin
 
-![CleanSpin](/2/pic/2CleanSpin.png)
+![CleanSpin](/pic/2CleanSpin.png)
 
 ### 優化 資料結構
 
 DataType
 
-![優化後DataType](/2/pic/3DataType.png)
+![優化後DataType](/pic/3DataType.png)
 
 優化結構後1000
 
-![優化後1000](/2/pic/3優化結構後1000.png)
+![優化後1000](/pic/3優化結構後1000.png)
 
 ### cMap & fMap 整合進 &Spin{}
 
 整合進Spin
 
-![整合進Spin](/2/pic/4整合.png)
+![整合進Spin](/pic/4整合.png)
 
 重構後
 
-![重構後](/2/pic/4重構後1000.png)
+![重構後](/pic/4重構後1000.png)
 
 重構後火焰圖
 
-![重構後火焰圖](/2/pic/4火焰圖.png)
+![重構後火焰圖](/pic/4火焰圖.png)
 
 ### tSlice 臨時變數 整合進 Spin
 
 重構後1000
 
-![重構後1000](/2/pic/5重構後1000.png)
+![重構後1000](/pic/5重構後1000.png)
+
+### Top 查看服務器狀態
+
+不控制併發
+
+![不控制併發](/pic/6Top不控制併發.png)
+
+控制併發
+
+![控制併發](/pic/6Top控制併發.png)
+
+### 將 Bet 也加入 Pool
+
+BetPool
+
+![BetPool](pic/7BetPool.png)
+
+Benchmark
+
+![Benchmark](pic/7Benchmark.png)
+
+### []Spin -> []*Spin
+
+InitBetPool
+
+![InitBetPool](/pic/8InitBetPool.png)
+
+OneBetResult
+
+![OneBetResult](/pic/8OneBetResult.png)
+
+FreeBet
+
+![FreeBet](/pic/8FreeBet.png)
+
+Benchmark
+
+![Benchmark](/pic/8Benchmark.png)
+
+火焰圖:
+
+![火焰圖](/pic/8火焰圖.png)
 
 ## Reference
 
