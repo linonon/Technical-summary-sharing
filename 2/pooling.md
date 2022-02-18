@@ -204,7 +204,7 @@ FreeBet
 
 Benchmark
 
-![Benchmark](pic/8Benchmark.png)
+![Benchmark](pic/8BenchMark.png)
 
 火焰圖:
 
